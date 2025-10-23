@@ -1,30 +1,34 @@
-# E2B.dev Deployment Guide
+# E2B.dev Sandbox Guide
 
-This guide shows how to deploy the Helidon MCP Server to E2B.dev platform.
+This guide shows how to run the Helidon MCP Server in an E2B.dev sandbox environment.
 
 ## Prerequisites
 
-1. **E2B.dev Account**: Sign up at [e2b.dev](https://e2b.dev)
-2. **E2B CLI**: Install the E2B command-line interface
-3. **Docker Image**: Your image should be pushed to Docker Hub (already done: `surendocker/helidon-mcp-server`)
+1. **E2B.dev Account**: Sign up at [e2b.dev](https://e2b.dev) (get $100 in credits!)
+2. **Node.js**: Install Node.js for running the E2B SDK
+3. **Git Repository**: Your code should be available on GitHub
 
 ## Installation
 
-### Install E2B CLI
+### Install E2B SDK
 
 ```bash
-# Install via npm
-npm install -g @e2b/cli
+# Install E2B SDK and dependencies
+npm install @e2b/code-interpreter dotenv
 
-# Or install via curl
-curl -fsSL https://e2b.dev/install.sh | sh
+# Or install globally
+npm install -g @e2b/code-interpreter
 ```
 
-### Login to E2B.dev
+### Set up Environment Variables
+
+1. Go to [E2B Dashboard](https://e2b.dev/dashboard)
+2. Copy your API key
+3. Create a `.env` file:
 
 ```bash
-# Login to your E2B account
-e2b auth login
+# .env
+E2B_API_KEY=e2b_***
 ```
 
 ## Deployment Methods

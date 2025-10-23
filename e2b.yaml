@@ -1,39 +1,9 @@
-# E2B.dev deployment configuration for Helidon MCP Server
+# E2B.dev sandbox configuration for Helidon MCP Server
+# This file contains environment variables and configuration for E2B sandbox
 name: helidon-mcp-server
 description: "Model Context Protocol (MCP) server implementation using Java and Helidon framework"
 
-# Runtime configuration
-runtime:
-  image: surendocker/helidon-mcp-server:latest
-  ports:
-    - 8080:8080
-  environment:
-    - JAVA_OPTS=-Xmx512m -Xms256m
-    - SERVER_PORT=8080
-  resources:
-    memory: 512Mi
-    cpu: 0.5
-
-# Health check configuration
-healthcheck:
-  path: /
-  port: 8080
-  interval: 30s
-  timeout: 10s
-  retries: 3
-
-# Scaling configuration
-scaling:
-  min_replicas: 1
-  max_replicas: 3
-  target_cpu: 70
-
-# Networking
-network:
-  type: public
-  domain: helidon-mcp-server.e2b.dev
-
-# Environment variables
+# Environment variables for E2B sandbox
 env:
   - name: JAVA_OPTS
     value: "-Xmx512m -Xms256m"
@@ -41,15 +11,13 @@ env:
     value: "8080"
   - name: LOG_LEVEL
     value: "INFO"
+  - name: E2B_SANDBOX_TIMEOUT
+    value: "300"  # 5 minutes default
 
-# Persistent storage (if needed)
-storage:
-  enabled: false
-
-# Monitoring
-monitoring:
-  enabled: true
-  metrics:
-    - cpu
-    - memory
-    - requests
+# Sandbox configuration
+sandbox:
+  timeout: 300  # 5 minutes
+  memory: 512Mi
+  cpu: 0.5
+  ports:
+    - 8080:8080
